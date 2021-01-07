@@ -24,6 +24,6 @@ by a `?`. A sample Sudoku input is shown below, ripped from
 ## Using SudokuSAT
 First, if `sudoku.txt` is missing or empty, run `init.py` to fix this problem.
 
-Then run `python main.py [input]`, or whatever you Python 3 command is. `input` is optional, if provided it specifies a
+Then run `python main.py [input]`, or whatever command you use to run a Python 3 file. `input` is optional, if provided it specifies a
 path to a file in the format described in [Inputting a Sudoku](#inputting-a-sudoku). Otherwise, input a Sudoku in that
 format line by line into stdin.
