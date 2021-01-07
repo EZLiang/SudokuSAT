@@ -12,9 +12,11 @@ if len(sys.argv) == 2:
     with open(sys.argv[1]) as h:
         sudoku = h.read()
 else:
+    print("--- Begin Sudoku ---")
     sudoku = ""
     for i in range(9):
-        sudoku += input().strip()
+        sudoku += input().strip() + "\n"
+    print("--- End Sudoku ---")
 
 n_clauses, clauses = parse.parse_sudoku(sudoku.strip())  # parse the sudoku
 
