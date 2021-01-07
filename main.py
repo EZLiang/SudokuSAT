@@ -32,9 +32,12 @@ for i in output.splitlines():
     if i[0] == "v":
         raw += i
 
-raw = raw.replace("v", "")[1:-2]
-numbers = parse.parse_output(raw)
-for i in range(9):
-    for j in range(9):
-        print(numbers[9 * i + j], end="")
-    print("")
+if "s UNSATISFIABLE" in output:
+    print("Sudoku has no solution")
+else:
+    raw = raw.replace("v", "")[1:-2]
+    numbers = parse.parse_output(raw)
+    for i in range(9):
+        for j in range(9):
+            print(numbers[9 * i + j], end="")
+        print("")
