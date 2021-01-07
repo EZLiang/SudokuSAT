@@ -3,7 +3,7 @@ Using SAT solvers to solve Sudoku puzzles
 
 SudokuSAT works by encoding Sudoku puzzles into [CNF](https://en.wikipedia.org/wiki/Conjunctive_normal_form) format,
 and then feeds it into a SAT solver, [kissat](https://github.com/arminbiere/kissat). Kissat was chosen because of its
-speed, getting first place in the [SAT Cmpetition 2020](https://satcompetition.github.io/2020/).
+speed, getting first place in the [SAT Competition 2020](https://satcompetition.github.io/2020/).
 
 ## Inputting a Sudoku
 Input a Sudoku as a 9x9 grid of characters. Each number will be input as-is, while every blank square will be repalced

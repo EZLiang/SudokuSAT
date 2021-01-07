@@ -5,10 +5,10 @@ def parse_sudoku(sudoku):
     for i in range(9):
         for j in range(9):
             if sudoku[i][j] != "?":
-                num = bin(int(sudoku[i][j]) - 1)[2:]
+                num = "{:0>4}".format(bin(int(sudoku[i][j]) - 1)[2:])
                 idx = 9 * i + j
                 for k in range(4):
-                    if num[k] == 1:
+                    if num[k] == "1":
                         clauses.append(f"{4 * idx + k + 1} 0")
                     else:
                         clauses.append(f"-{4 * idx + k + 1} 0")
