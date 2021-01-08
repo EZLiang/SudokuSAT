@@ -7,7 +7,7 @@ f = open("sudoku.in", "w")  # where the sudoku clauses will be written to
 with open("sudoku.txt") as h:
     SUDOKU_CLAUSES = h.read() # read in the provided clauses
 
-# get the sudoku, either through file of stdin
+# get the sudoku, either through file or stdin
 if len(sys.argv) == 2:
     with open(sys.argv[1]) as h:
         sudoku = h.read()
