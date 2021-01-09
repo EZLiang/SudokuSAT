@@ -1,51 +1,50 @@
+from common import *
+
 f = open("sudoku.txt", "w")
 
 # helper function, writes the formula stating that the cell at position idx is valid
 def write_isvalid(idx):
-    f.write(f"-{4 * i + 1} -{4 * i + 2} 0\n")
-    f.write(f"-{4 * i + 1} -{4 * i + 3} 0\n")
-    f.write(f"-{4 * i + 1} -{4 * i + 4} 0\n")
+    ...
 
 # helper function, writes the formula stating that the cells at positions idx and idx2 are not equal
 def write_isneq(idx, idx2):
     masks = []
-    for i in range(16):
+    for i in range(2 ** BITS):
         mask = []
-        for j in range(4):
+        for j in range(BITS):
             if i & (2 ** j):
                 mask.append("-")
             else:
                 mask.append("")
         masks.append(mask)
     for i in masks:
-        f.write(f"{i[0]}{4 * idx + 1} {i[0]}{4 * idx2 + 1} ")
-        f.write(f"{i[1]}{4 * idx + 2} {i[1]}{4 * idx2 + 2} ")
-        f.write(f"{i[2]}{4 * idx + 3} {i[2]}{4 * idx2 + 3} ")
-        f.write(f"{i[3]}{4 * idx + 4} {i[3]}{4 * idx2 + 4} 0\n")
+        for j in range(BITS):
+            f.write(f"{i[j]}{BITS * idx + j + 1} {i[j]}{BITS * idx2 + j + 1} ")
+        f.write("0\n")
 
 
-for i in range(81):  # make sure every cell is valid
+for i in range(COUNT):  # make sure every cell is valid
     write_isvalid(i)
 
-for row in range(9):  # make sure no two different cells in the same row are equal
-    for i in range(9):
-        for j in range(9):
+for row in range(LENGTH):  # make sure no two different cells in the same row are equal
+    for i in range(LENGTH):
+        for j in range(LENGTH):
             if i != j:
-                write_isneq(9 * row + i, 9 * row + j)
+                write_isneq(LENGTH * row + i, LENGTH * row + j)
 
-for col in range(9):  # make sure no two different cells in the same column are equal
-    for i in range(9):
-        for j in range(9):
+for col in range(LENGTH):  # make sure no two different cells in the same column are equal
+    for i in range(LENGTH):
+        for j in range(LENGTH):
             if i != j:
-                write_isneq(col + 9 * i, col + 9 * j)
+                write_isneq(col + LENGTH * i, col + LENGTH * j)
 
-for x in range(3):  # make sure no two cells in the same 3x3 block not in the same rwo or column are equal
-    for y in range(3):
-        for i in range(3):
-            for j in range(3):
-                for k in range(3):
-                    for l in range(3):
+for x in range(SIZE):  # make sure no two cells in the same 3x3 block not in the same rwo or column are equal
+    for y in range(SIZE):
+        for i in range(SIZE):
+            for j in range(SIZE):
+                for k in range(SIZE):
+                    for l in range(SIZE):
                         if (i != k) and (j != l):
-                            write_isneq(3 * x + i + 27 * y + 9 * j, 3 * x + k + 27 * y + 9 * l)
+                            write_isneq(SIZE * x + i + POW3 * y + LENGTH * j, SIZE * x + k + POW3 * y + LENGTH * l)
 
 f.close()
