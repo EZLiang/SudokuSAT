@@ -1,17 +1,15 @@
 def parse_sudoku(sudoku):
     clauses = []
-    sudoku = sudoku.splitlines()
-    sudoku = [list(i) for i in sudoku]
-    for i in range(9):
-        for j in range(9):
-            if sudoku[i][j] != "?":
-                num = "{:0>4}".format(bin(int(sudoku[i][j]) - 1)[2:])
-                idx = 9 * i + j
-                for k in range(4):
-                    if num[k] == "1":
-                        clauses.append(f"{4 * idx + k + 1} 0")
-                    else:
-                        clauses.append(f"-{4 * idx + k + 1} 0")
+    sudoku = sudoku.replace("\n", "")
+    sudoku = list(sudoku)
+    for i in range(81):
+        if sudoku[i] != "?":
+            num = "{:0>4}".format(bin(int(sudoku[i]) - 1)[2:])
+            for j in range(4):
+                if num[j] == "1":
+                    clauses.append(f"{4 * i + j + 1} 0")
+                else:
+                    clauses.append(f"-{4 * i + j + 1} 0")
     return len(clauses), "\n".join(clauses)
 
 
